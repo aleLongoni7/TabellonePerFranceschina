@@ -7,36 +7,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
+
+/* SFONDO BLU NAVY SFUMATO */
 body{
   font-family:'Orbitron',sans-serif;
-  background:linear-gradient(rgba(0,60,90,0.5), rgba(0,60,90,0.8)),
-  url("https://images.unsplash.com/photo-1560090995-01632a28895b?auto=format&fit=crop&w=1200&q=80");
-  background-size:cover;
-  background-position:center;
+  background: linear-gradient(160deg, #0a1c3b, #0f2a5a);
   color:white;
   display:flex;
   flex-direction:column;
   align-items:center;
+  justify-content:center;
   padding:10px;
   min-height:100vh;
 }
+
+/* CONTENITORE TABELLONE */
 .container{
   width:95%;
   max-width:420px;
   backdrop-filter:blur(14px);
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.05);
   border-radius:25px;
   padding:20px;
   text-align:center;
-  box-shadow:0 0 25px rgba(0,180,255,0.5), inset 0 0 25px rgba(255,255,255,0.1);
+  box-shadow:0 0 25px rgba(0,180,255,0.3), inset 0 0 20px rgba(255,255,255,0.05);
   border:1px solid rgba(255,255,255,0.2);
-  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
+
+/* TITOLO */
 h1{
   font-size:22px;
   margin-bottom:15px;
   text-shadow:0 0 10px #00d9ff,0 0 20px #00d9ff;
 }
+
+/* TIMER */
 .timer{
   font-size:60px;
   font-weight:900;
@@ -44,28 +52,39 @@ h1{
   letter-spacing:3px;
   text-shadow:0 0 15px #00eaff,0 0 40px #00eaff;
 }
+
+/* PERIODO */
 .period{
   font-size:0.85rem;
   opacity:0.7;
   margin-bottom:15px;
 }
+
+/* SCOREBOARD */
 .scoreboard{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
+  width:100%;
 }
+
+/* CARD SQUADRA */
 .teamCard{
   background:rgba(255,255,255,0.05);
   backdrop-filter:blur(10px);
   border-radius:12px;
   padding:10px;
   text-align:center;
-  box-shadow:0 6px 20px rgba(0,0,0,0.6), inset 0 0 10px rgba(255,255,255,0.05);
+  box-shadow:0 6px 20px rgba(0,0,0,0.5), inset 0 0 10px rgba(255,255,255,0.05);
 }
+
+/* NOME SQUADRA */
 .team{
   font-size:0.75rem;
   opacity:0.7;
 }
+
+/* PUNTEGGIO */
 .score{
   font-size:3.8rem;
   font-weight:900;
@@ -77,6 +96,8 @@ h1{
   animation:goalFlash 0.35s;
 }
 @keyframes goalFlash{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
+
+/* SHOT CLOCK */
 .shotclock{
   font-size:2.8rem;
   margin-top:10px;
@@ -87,6 +108,8 @@ h1{
   animation:blink 0.7s infinite;
 }
 @keyframes blink{0%{opacity:1}50%{opacity:0.3}100%{opacity:1}}
+
+/* BOTTONI */
 .controls{
   display:flex;
   flex-wrap:wrap;
@@ -104,11 +127,13 @@ button{
   background:linear-gradient(145deg,#0f172a,#1e293b);
   color:white;
   cursor:pointer;
-  box-shadow:0 3px 10px rgba(0,0,0,0.6), inset 0 0 6px rgba(255,255,255,0.1);
+  box-shadow:0 3px 10px rgba(0,0,0,0.5), inset 0 0 6px rgba(255,255,255,0.05);
   transition:0.2s;
 }
 button:active{transform:scale(0.95);}
 button.selected{box-shadow:0 0 15px #00ff9c,0 0 40px #00ff9c;}
+
+/* OVERLAY GOAL */
 .goalOverlay{
   position:fixed;
   top:0; left:0;
@@ -125,15 +150,26 @@ button.selected{box-shadow:0 0 15px #00ff9c,0 0 40px #00ff9c;}
   transition:0.25s;
 }
 .goalOverlay.show{opacity:1;}
+
+/* FIRMA */
 .signature{
   margin-top:8px;
   font-size:0.55rem;
   opacity:0.4;
 }
+
+/* RESPONSIVE VERTICALE / ORIZZONTALE */
 @media(max-width:400px){
   .timer{font-size:50px;}
   .score{font-size:3.2rem;}
   .shotclock{font-size:2.5rem;}
+}
+@media (orientation: landscape){
+  body{flex-direction:row; justify-content:center; align-items:flex-start; padding-top:20px;}
+  .container{max-width:600px;}
+  .timer{font-size:80px; margin:0 20px;}
+  .scoreboard{grid-template-columns:1fr 1fr;}
+  .controls{flex-wrap:wrap;}
 }
 </style>
 </head>
@@ -182,9 +218,7 @@ button.selected{box-shadow:0 0 15px #00ff9c,0 0 40px #00ff9c;}
 </div>
 
 <script>
-// -------------------------
 // PUNTEGGI
-// -------------------------
 let scoreA=0, scoreB=0;
 function updateScores(){
     let a=document.getElementById("scoreA");
@@ -197,18 +231,14 @@ function goal(team){if(team==="A") scoreA++; if(team==="B") scoreB++; updateScor
 function removeGoal(team){if(team==="A" && scoreA>0) scoreA--; if(team==="B" && scoreB>0) scoreB--; updateScores();}
 function showGoal(){let g=document.getElementById("goalOverlay"); g.classList.add("show"); setTimeout(()=>{g.classList.remove("show");},700);}
 
-// -------------------------
 // TIMER PARTITA
-// -------------------------
 let gameInterval = null;
 let minutes=8, seconds=0;
 let period=1;
 function updateGame(){document.getElementById("gameTimer").innerText=`${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;}
 function nextPeriod(){if(period<4){period++; minutes=8; seconds=0; resetShot(); updateGame(); document.getElementById("period").innerText=period;}}
 
-// -------------------------
-// UNICO TIMER 18-28
-// -------------------------
+// SHOT CLOCK
 let shot = 28;
 let shotInterval = null;
 let audioCtx = null;
@@ -217,13 +247,12 @@ function initAudio(){if(!audioCtx) audioCtx=new(window.AudioContext||window.webk
 function playBeep(){initAudio(); const osc=audioCtx.createOscillator(); const gain=audioCtx.createGain(); osc.type="sine"; osc.frequency.value=1000; gain.gain.value=0.45; osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime+0.45); if(navigator.vibrate) navigator.vibrate([200,100,200]);}
 function updateShotDisplay(){const el=document.getElementById("shotClock"); el.innerText=shot; if(shot<=5) el.classList.add("warning"); else el.classList.remove("warning");}
 function setShotTime(sec){shot=sec; updateShotDisplay();}
+function resetShot(){setShotTime(28);}
 
-// -------------------------
-// FUNZIONI UNIFICATE START/STOP
-// -------------------------
+// START / STOP UNIFICATO
 function startAll(){
-    stopAll(); // sicuro
-    // Partita
+    stopAll();
+    // Timer partita
     gameInterval = setInterval(()=>{
         if(seconds===0){
             if(minutes===0){stopAll(); playBeep(); return;}
@@ -241,11 +270,8 @@ function stopAll(){
     clearInterval(gameInterval);
     clearInterval(shotInterval);
 }
-function resetShot(){setShotTime(28);}
 
-// -------------------------
 // INIT
-// -------------------------
 updateGame();
 updateShotDisplay();
 </script>
