@@ -6,181 +6,134 @@
 <title>Tabellone Waterpolo</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
-
-/* RESET BASE */
-*{margin:0; padding:0; box-sizing:border-box;}
-
-/* SFONDO PISCINA CON CAMPO */
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-font-family:'Orbitron',sans-serif;
-background:
-linear-gradient(rgba(0,60,90,0.5), rgba(0,60,90,0.8)),
-url("https://images.unsplash.com/photo-1560090995-01632a28895b?auto=format&fit=crop&w=1200&q=80");
-background-size:cover;
-background-position:center;
-color:white;
-display:flex;
-flex-direction:column;
-align-items:center;
-padding:10px;
-min-height:100vh;
+  font-family:'Orbitron',sans-serif;
+  background:linear-gradient(rgba(0,60,90,0.5), rgba(0,60,90,0.8)),
+  url("https://images.unsplash.com/photo-1560090995-01632a28895b?auto=format&fit=crop&w=1200&q=80");
+  background-size:cover;
+  background-position:center;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:10px;
+  min-height:100vh;
 }
-
-/* CONTENITORE TABELLONE */
 .container{
-width:95%;
-max-width:420px;
-backdrop-filter:blur(14px);
-background: rgba(255,255,255,0.08);
-border-radius:25px;
-padding:20px;
-text-align:center;
-box-shadow:0 0 25px rgba(0,180,255,0.5), inset 0 0 25px rgba(255,255,255,0.1);
-border:1px solid rgba(255,255,255,0.2);
-position:relative;
+  width:95%;
+  max-width:420px;
+  backdrop-filter:blur(14px);
+  background: rgba(255,255,255,0.08);
+  border-radius:25px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 0 25px rgba(0,180,255,0.5), inset 0 0 25px rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.2);
+  position:relative;
 }
-
-/* TITOLO */
 h1{
-font-size:22px;
-margin-bottom:15px;
-text-shadow:0 0 10px #00d9ff,0 0 20px #00d9ff;
+  font-size:22px;
+  margin-bottom:15px;
+  text-shadow:0 0 10px #00d9ff,0 0 20px #00d9ff;
 }
-
-/* TIMER */
 .timer{
-font-size:60px;
-font-weight:900;
-margin:20px 0;
-letter-spacing:3px;
-text-shadow:0 0 15px #00eaff,0 0 40px #00eaff;
+  font-size:60px;
+  font-weight:900;
+  margin:20px 0;
+  letter-spacing:3px;
+  text-shadow:0 0 15px #00eaff,0 0 40px #00eaff;
 }
-
-/* PERIODO */
 .period{
-font-size:0.85rem;
-opacity:0.7;
-margin-bottom:15px;
+  font-size:0.85rem;
+  opacity:0.7;
+  margin-bottom:15px;
 }
-
-/* SCOREBOARD */
 .scoreboard{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
-
-/* CARD SQUADRA */
 .teamCard{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
-border-radius:12px;
-padding:10px;
-text-align:center;
-box-shadow:0 6px 20px rgba(0,0,0,0.6), inset 0 0 10px rgba(255,255,255,0.05);
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  border-radius:12px;
+  padding:10px;
+  text-align:center;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6), inset 0 0 10px rgba(255,255,255,0.05);
 }
-
-/* NOME SQUADRA */
 .team{
-font-size:0.75rem;
-opacity:0.7;
+  font-size:0.75rem;
+  opacity:0.7;
 }
-
-/* PUNTEGGIO */
 .score{
-font-size:3.8rem;
-font-weight:900;
-color:#00ff9c;
-text-shadow:0 0 15px #00ff9c,0 0 30px #00ff9c;
-transition:0.2s;
+  font-size:3.8rem;
+  font-weight:900;
+  color:#00ff9c;
+  text-shadow:0 0 15px #00ff9c,0 0 30px #00ff9c;
+  transition:0.2s;
 }
-
-/* GOAL FLASH */
 .goalFlash{
-animation:goalFlash 0.35s;
+  animation:goalFlash 0.35s;
 }
-@keyframes goalFlash{
-0%{transform:scale(1)}
-50%{transform:scale(1.25)}
-100%{transform:scale(1)}
-}
-
-/* SHOT CLOCK */
+@keyframes goalFlash{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
 .shotclock{
-font-size:2.8rem;
-margin-top:10px;
-color:#ff2e2e;
-text-shadow:0 0 15px #ff2e2e,0 0 30px #ff2e2e;
+  font-size:2.8rem;
+  margin-top:10px;
+  text-shadow:0 0 15px #ff2e2e,0 0 30px #ff2e2e;
+  color:#ff2e2e;
 }
-
-/* LAMPEGGIO SHOT CLOCK SOTTO 5s */
-.warning{
-animation:blink 0.7s infinite;
+.shotclock.warning{
+  animation:blink 0.7s infinite;
 }
 @keyframes blink{0%{opacity:1}50%{opacity:0.3}100%{opacity:1}}
-
-/* ESPULSIONE */
-.exclusion{
-font-size:2.5rem;
-color:#00e5ff;
-text-shadow:0 0 15px #00e5ff,0 0 30px #00e5ff;
-margin-top:10px;
-}
-
-/* BOTTONI */
 .controls{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:6px;
-margin-top:6px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:6px;
+  margin-top:6px;
 }
 button{
-flex:1;
-padding:12px;
-border:none;
-border-radius:12px;
-font-size:0.75rem;
-font-family:'Orbitron',sans-serif;
-background:linear-gradient(145deg,#0f172a,#1e293b);
-color:white;
-cursor:pointer;
-box-shadow:0 3px 10px rgba(0,0,0,0.6), inset 0 0 6px rgba(255,255,255,0.1);
-transition:0.2s;
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  font-size:0.75rem;
+  font-family:'Orbitron',sans-serif;
+  background:linear-gradient(145deg,#0f172a,#1e293b);
+  color:white;
+  cursor:pointer;
+  box-shadow:0 3px 10px rgba(0,0,0,0.6), inset 0 0 6px rgba(255,255,255,0.1);
+  transition:0.2s;
 }
 button:active{transform:scale(0.95);}
-
-/* OVERLAY GOAL */
+button.selected{box-shadow:0 0 15px #00ff9c,0 0 40px #00ff9c;}
 .goalOverlay{
-position:fixed;
-top:0; left:0;
-width:100%; height:100%;
-background:rgba(0,0,0,0.9);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:4rem;
-color:#00ff9c;
-text-shadow:0 0 25px #00ff9c,0 0 60px #00ff9c;
-opacity:0;
-pointer-events:none;
-transition:0.25s;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:4rem;
+  color:#00ff9c;
+  text-shadow:0 0 25px #00ff9c,0 0 60px #00ff9c;
+  opacity:0;
+  pointer-events:none;
+  transition:0.25s;
 }
 .goalOverlay.show{opacity:1;}
-
-/* FIRMA */
 .signature{
-margin-top:8px;
-font-size:0.55rem;
-opacity:0.4;
+  margin-top:8px;
+  font-size:0.55rem;
+  opacity:0.4;
 }
-
-/* MOBILE RESPONSIVE */
 @media(max-width:400px){
-.timer{font-size:50px;}
-.score{font-size:3.2rem;}
-.shotclock{font-size:2.5rem;}
-.exclusion{font-size:2.2rem;}
+  .timer{font-size:50px;}
+  .score{font-size:3.2rem;}
+  .shotclock{font-size:2.5rem;}
 }
 </style>
 </head>
@@ -189,11 +142,9 @@ opacity:0.4;
 <div class="container">
 
 <h1>POLPETTA♥️</h1>
-
 <div class="goalOverlay" id="goalOverlay">GOAL</div>
 
 <div class="scoreboard">
-
 <div class="teamCard">
 <div class="team">Bianchi</div>
 <div id="scoreA" class="score">0</div>
@@ -202,7 +153,6 @@ opacity:0.4;
 <button onclick="removeGoal('A')">-1</button>
 </div>
 </div>
-
 <div class="teamCard">
 <div class="team">Neri</div>
 <div id="scoreB" class="score">0</div>
@@ -211,7 +161,6 @@ opacity:0.4;
 <button onclick="removeGoal('B')">-1</button>
 </div>
 </div>
-
 </div>
 
 <div class="timer" id="gameTimer">08:00</div>
@@ -219,17 +168,13 @@ opacity:0.4;
 
 <div class="shotclock" id="shotClock">28</div>
 <div class="controls">
-<button onclick="resetShot()">RESET SHOT</button>
-</div>
-
-<div class="exclusion" id="exclusion">18</div>
-<div class="controls">
-<button onclick="startExclusion()">ESPULSIONE</button>
+<button onclick="setShotTime(18)">18s</button>
+<button onclick="setShotTime(28)">28s</button>
 </div>
 
 <div class="controls">
-<button onclick="startGame()">START</button>
-<button onclick="stopGame()">STOP</button>
+<button id="startBtn" onclick="startAll()">START</button>
+<button id="stopBtn" onclick="stopAll()">STOP</button>
 <button onclick="nextPeriod()">TEMPO</button>
 </div>
 
@@ -237,42 +182,72 @@ opacity:0.4;
 </div>
 
 <script>
-// Punteggi
+// -------------------------
+// PUNTEGGI
+// -------------------------
 let scoreA=0, scoreB=0;
 function updateScores(){
-let a=document.getElementById("scoreA");
-let b=document.getElementById("scoreB");
-a.innerText=scoreA; b.innerText=scoreB;
-a.classList.add("goalFlash"); b.classList.add("goalFlash");
-setTimeout(()=>{a.classList.remove("goalFlash"); b.classList.remove("goalFlash");},350);
+    let a=document.getElementById("scoreA");
+    let b=document.getElementById("scoreB");
+    a.innerText=scoreA; b.innerText=scoreB;
+    a.classList.add("goalFlash"); b.classList.add("goalFlash");
+    setTimeout(()=>{a.classList.remove("goalFlash"); b.classList.remove("goalFlash");},350);
 }
 function goal(team){if(team==="A") scoreA++; if(team==="B") scoreB++; updateScores(); showGoal(); resetShot();}
 function removeGoal(team){if(team==="A" && scoreA>0) scoreA--; if(team==="B" && scoreB>0) scoreB--; updateScores();}
 function showGoal(){let g=document.getElementById("goalOverlay"); g.classList.add("show"); setTimeout(()=>{g.classList.remove("show");},700);}
 
-// Timer preciso
+// -------------------------
+// TIMER PARTITA
+// -------------------------
 let gameInterval = null;
-let shotInterval = null;
 let minutes=8, seconds=0;
-function updateGame(){document.getElementById("gameTimer").innerText = `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;}
-function startGame(){stopGame(); gameInterval=setInterval(()=>{if(seconds===0){if(minutes===0){stopGame();beep();return;} minutes--; seconds=59;} else seconds--; updateGame();},1000); shotInterval=setInterval(()=>{if(shot>0){shot--; updateShot();}else beep();},1000);}
-function stopGame(){clearInterval(gameInterval); clearInterval(shotInterval);}
-function nextPeriod(){if(period<4){period++; minutes=8; seconds=0; resetShot(); updateGame(); document.getElementById("period").innerText=period;}}
 let period=1;
+function updateGame(){document.getElementById("gameTimer").innerText=`${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;}
+function nextPeriod(){if(period<4){period++; minutes=8; seconds=0; resetShot(); updateGame(); document.getElementById("period").innerText=period;}}
 
-// Shot Clock
-let shot=28;
-function updateShot(){let el=document.getElementById("shotClock"); el.innerText=shot; if(shot<=5) el.classList.add("warning"); else el.classList.remove("warning");}
-function resetShot(){shot=28; updateShot();}
+// -------------------------
+// UNICO TIMER 18-28
+// -------------------------
+let shot = 28;
+let shotInterval = null;
+let audioCtx = null;
 
-// Espulsione
-function startExclusion(){let ex=18; document.getElementById("exclusion").innerText=ex; let exInterval=setInterval(()=>{if(ex>0){ex--; document.getElementById("exclusion").innerText=ex;}else clearInterval(exInterval);},1000);}
+function initAudio(){if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==="suspended") audioCtx.resume();}
+function playBeep(){initAudio(); const osc=audioCtx.createOscillator(); const gain=audioCtx.createGain(); osc.type="sine"; osc.frequency.value=1000; gain.gain.value=0.45; osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime+0.45); if(navigator.vibrate) navigator.vibrate([200,100,200]);}
+function updateShotDisplay(){const el=document.getElementById("shotClock"); el.innerText=shot; if(shot<=5) el.classList.add("warning"); else el.classList.remove("warning");}
+function setShotTime(sec){shot=sec; updateShotDisplay();}
 
-// Beep
-function beep(){let ctx=new(window.AudioContext||window.webkitAudioContext)(); let osc=ctx.createOscillator(); osc.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime+0.5);}
+// -------------------------
+// FUNZIONI UNIFICATE START/STOP
+// -------------------------
+function startAll(){
+    stopAll(); // sicuro
+    // Partita
+    gameInterval = setInterval(()=>{
+        if(seconds===0){
+            if(minutes===0){stopAll(); playBeep(); return;}
+            minutes--; seconds=59;
+        } else seconds--;
+        updateGame();
+    },1000);
+    // Shot clock
+    shotInterval = setInterval(()=>{
+        if(shot>0){shot--; updateShotDisplay();}
+        else{playBeep(); clearInterval(shotInterval);}
+    },1000);
+}
+function stopAll(){
+    clearInterval(gameInterval);
+    clearInterval(shotInterval);
+}
+function resetShot(){setShotTime(28);}
 
-// Init
-updateGame(); updateShot();
+// -------------------------
+// INIT
+// -------------------------
+updateGame();
+updateShotDisplay();
 </script>
 </body>
 </html>
